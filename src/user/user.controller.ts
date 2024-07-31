@@ -14,6 +14,7 @@ import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guards';
 import { UserRepository } from './user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ChangePasswordDto } from './dto/change-password.dtp';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -40,5 +41,14 @@ export class UserController {
     @Body() changePasswordDto: ChangePasswordDto,
   ): Promise<void> {
     return this.userService.changePassword(user.id, changePasswordDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('update-info')
+  updateUserInfo(
+    @Request() { user }: any,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise<User> {
+    return this.userService.updateUserInfo(user.id, updateUserDto);
   }
 }

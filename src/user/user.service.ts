@@ -10,6 +10,7 @@ import { SignUpDto } from './dto/signup.dto';
 import * as bcrypt from 'bcrypt';
 import { User } from './user.entity';
 import { ChangePasswordDto } from './dto/change-password.dtp';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -91,5 +92,19 @@ export class UserService {
         message: ['error password not change.'],
       });
     }
+  }
+
+  async updateUserInfo(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<User> {
+    const user = await this.getUserInfo(id);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    Object.assign(user, updateUserDto);
+    return this.userRepository.save(user);
   }
 }
