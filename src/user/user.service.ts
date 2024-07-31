@@ -4,6 +4,7 @@ import { UserRepository } from './user.repository';
 import { SignUpDto } from './dto/signup.dto';
 import * as bcrypt from 'bcrypt';
 import { User } from './user.entity';
+
 @Injectable()
 export class UserService {
   constructor(
@@ -53,9 +54,10 @@ export class UserService {
     return user;
   }
 
-  async getUserInfo(id: string): Promise<User> {
+  async getUserInfo(id: string): Promise<any> {
     const user = await this.userRepository.findOne({ where: { id } });
-
-    return user;
+    console.log(user.password);
+    const { password, ...result } = user;
+    return result;
   }
 }
