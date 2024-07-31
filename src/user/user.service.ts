@@ -13,8 +13,16 @@ export class UserService {
 
   async signUp(signUpDto: SignUpDto): Promise<User> {
     try {
-      const { username, password, catName, ownerName, gender, breeds } =
-        signUpDto;
+      const {
+        username,
+        password,
+        catName,
+        ownerName,
+        gender,
+        breeds,
+        description,
+        profilePic,
+      } = signUpDto;
 
       const hashedPassword = await bcrypt.hashSync(password, 10);
 
@@ -25,6 +33,8 @@ export class UserService {
         ownerName,
         gender,
         breeds,
+        description,
+        profilePic,
       });
 
       console.log(user);

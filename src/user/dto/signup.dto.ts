@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsOptional, Matches } from 'class-validator';
+import { MaxFileSize } from '../validator/max-file-size.validator';
 
 export class SignUpDto {
   @IsNotEmpty()
@@ -23,6 +24,10 @@ export class SignUpDto {
   @IsNotEmpty()
   breeds: string;
 
-  // @IsOptional()
-  // description?: string;
+  @IsOptional()
+  description?: string;
+
+  @IsOptional()
+  @MaxFileSize({ message: 'Profile picture size must be 1MB or less' })
+  profilePic?: string;
 }

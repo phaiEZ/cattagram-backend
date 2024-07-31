@@ -2,7 +2,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -36,12 +35,9 @@ export class User {
   @Column()
   breeds: string;
 
-  // @Column()
-  // profilePic: string;
+  @Column({ nullable: true })
+  description?: string;
 
-  // @Column()
-  // description: string;
-
-  // @Column()
-  // birthday: Date;
+  @Column({ nullable: true })
+  profilePic?: string;
 }
