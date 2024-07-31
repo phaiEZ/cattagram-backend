@@ -1,9 +1,15 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
 import { SignUpDto } from './dto/signup.dto';
 import * as bcrypt from 'bcrypt';
 import { User } from './user.entity';
+import { ChangePasswordDto } from './dto/change-password.dtp';
 
 @Injectable()
 export class UserService {
@@ -56,8 +62,34 @@ export class UserService {
 
   async getUserInfo(id: string): Promise<any> {
     const user = await this.userRepository.findOne({ where: { id } });
-    console.log(user.password);
     const { password, ...result } = user;
-    return result;
+    return user;
+  }
+
+  async changePassword(
+    id: string,
+    changePasswordDto: ChangePasswordDto,
+  ): Promise<any> {
+    try {
+      const { oldPassword, newPassword } = changePasswordDto;
+      const user = await this.getUserInfo(id);
+      console.log(user);
+
+      const isOldPasswordValid = await bcrypt.compare(
+        oldPassword,
+        user.password,
+      );
+      if (!isOldPasswordValid) {
+        throw new UnauthorizedException('Old password is incorrect');
+      }
+
+      user.password = await bcrypt.hash(newPassword, 10);
+      await this.userRepository.save(user);
+      return { message: 'Password changed successfully' };
+    } catch (error) {
+      throw new ConflictException({
+        message: ['error password not change.'],
+      });
+    }
   }
 }
