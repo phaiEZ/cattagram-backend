@@ -1,7 +1,9 @@
+import { Image } from 'src/image/image.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -37,6 +39,9 @@ export class User {
 
   @Column({ nullable: true })
   description?: string;
+
+  @OneToMany(() => Image, (image) => image.user)
+  images: Image[];
 
   @Column({ nullable: true })
   profilePic?: string;
