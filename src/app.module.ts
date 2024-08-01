@@ -6,6 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ImageModule } from './image/image.module';
 import { CatxModule } from './catx/catx.module';
+import { CommentService } from './comment/comment.service';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -32,6 +34,7 @@ import { CatxModule } from './catx/catx.module';
     UserModule,
     ImageModule,
     CatxModule,
+    CommentModule,
   ],
   controllers: [],
   providers: [],

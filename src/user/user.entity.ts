@@ -1,4 +1,5 @@
 import { Catx } from 'src/catx/catx.entity';
+import { Comment } from 'src/comment/comment.entity';
 import { Image } from 'src/image/image.entity';
 import {
   Column,
@@ -49,4 +50,7 @@ export class User {
 
   @OneToMany(() => Catx, (catx) => catx.user)
   catxs: Catx[];
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments: Comment[];
 }

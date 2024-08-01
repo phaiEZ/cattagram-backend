@@ -19,16 +19,6 @@ import { UpdateCatxDto } from './dto/update.catx.dto';
 export class CatxController {
   constructor(private catxService: CatxService) {}
 
-  //   @UseGuards(JwtAuthGuard)
-  //   @Post('create')
-  //   createCatx(
-  //     @Body() createCatxDto: CreateCatxDto,
-  //     @Request() { user }: any,
-  //   ): Promise<Catx> {
-
-  //     return this.catxService.createCatx({}, user);
-  //   }
-
   @UseGuards(JwtAuthGuard)
   @Post('create')
   createCatx(
