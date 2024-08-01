@@ -6,12 +6,14 @@ import {
   UseGuards,
   Delete,
   Param,
+  Get,
 } from '@nestjs/common';
 import { CommentService } from './comment.service';
 
 import { Comment } from './comment.entity';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guards';
 import { CreateCommentDto } from './dto/create-comment.dto';
+import { CommentDto } from './dto/comment.dto';
 
 @Controller('comment')
 export class CommentController {
@@ -38,5 +40,11 @@ export class CommentController {
   ): Promise<{ message: string }> {
     await this.commentService.deleteCommentById(commentId, user.id);
     return { message: 'Comment deleted successfully' };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get(':catxId')
+  getCommentsByCatxId(@Param('catxId') catxId: string): Promise<CommentDto[]> {
+    return this.commentService.getCommentsByCatxId(catxId);
   }
 }

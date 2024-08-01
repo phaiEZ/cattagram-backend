@@ -8,6 +8,7 @@ import { CommentRepository } from './comment.repository';
 import { CatxRepository } from '../catx/catx.repository';
 import { Comment } from './comment.entity';
 import { User } from 'src/user/user.entity';
+import { CommentDto } from './dto/comment.dto';
 
 @Injectable()
 export class CommentService {
@@ -57,4 +58,25 @@ export class CommentService {
 
     await this.commentRepository.remove(comment);
   }
+
+  async getCommentsByCatxId(catxId: string): Promise<CommentDto[]> {
+    const comments = await this.commentRepository.find({
+      where: { catx: { id: catxId } },
+      relations: ['user', 'catx'],
+    });
+
+    return comments.map((comment) => ({
+      id: comment.id,
+      text: comment.text,
+      created: comment.created,
+      update: comment.update,
+      user: {
+        id: comment.user.id,
+        username: comment.user.username,
+        profilePic: comment.user.profilePic,
+      },
+      catxId: comment.catx.id,
+    }));
+  }
+  
 }
