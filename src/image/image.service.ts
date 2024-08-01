@@ -22,10 +22,10 @@ export class ImageService {
     uploadImgDto: UploadImgDto,
     user: User,
   ): Promise<Image> {
-    const { profilePic, description } = uploadImgDto;
+    const { img, description } = uploadImgDto;
 
     const image = this.imageRepository.create({
-      profilePic,
+      img,
       description,
       user,
     });
@@ -42,11 +42,20 @@ export class ImageService {
 
   async getImagesByUserId(userId: string): Promise<Image[]> {
     try {
-      console.log(userId);
-      return await this.imageRepository.find({
-        where: { user: { id: userId } },
-        // relations: ['user'],
-      });
+      return await this.imageRepository
+        .createQueryBuilder('image')
+        .leftJoinAndSelect('image.user', 'user')
+        .select([
+          'image.id',
+          'image.description',
+          'image.created',
+          'image.update',
+          'user.id',
+          'user.profilePic',
+          'user.username',
+        ])
+        .where('image.user.id = :userId', { userId })
+        .getMany();
     } catch (error) {
       console.error('Error fetching images by user ID:', error);
       throw new InternalServerErrorException(

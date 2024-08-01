@@ -1,3 +1,4 @@
+import { Catx } from 'src/catx/catx.entity';
 import { Image } from 'src/image/image.entity';
 import {
   Column,
@@ -45,4 +46,7 @@ export class User {
 
   @Column({ nullable: true })
   profilePic?: string;
+
+  @OneToMany(() => Catx, (catx) => catx.user)
+  catxs: Catx[];
 }

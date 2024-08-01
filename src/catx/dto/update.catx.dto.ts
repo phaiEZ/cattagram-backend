@@ -1,9 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class UploadImgDto {
-  @IsNotEmpty()
-  img: string;
-
+export class UpdateCatxDto {
   @IsNotEmpty()
   description: string;
 }

@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Image {
+export class Catx {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,15 +18,12 @@ export class Image {
   created: Date;
 
   @UpdateDateColumn()
-  update: Date;
-
-  @Column()
-  img: string;
-
-  @ManyToOne(() => User, (user) => user.images)
-  @JoinColumn({ name: 'userId' })
-  user: User;
+  updated: Date;
 
   @Column()
   description: string;
+
+  @ManyToOne(() => User, (user) => user.catxs)
+  @JoinColumn({ name: 'userId' })
+  user: User;
 }

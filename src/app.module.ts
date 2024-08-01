@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ImageModule } from './image/image.module';
+import { CatxModule } from './catx/catx.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ImageModule } from './image/image.module';
     AuthModule,
     UserModule,
     ImageModule,
+    CatxModule,
   ],
   controllers: [],
   providers: [],
