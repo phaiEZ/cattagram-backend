@@ -1,15 +1,15 @@
-import { Comment } from 'src/comment/comment.entity';
-import { User } from 'src/user/user.entity';
 import {
+  Entity,
+  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
 } from 'typeorm';
+import { User } from 'src/user/user.entity';
+import { Comment } from 'src/comment/comment.entity';
 
 @Entity()
 export class Catx {
@@ -20,7 +20,7 @@ export class Catx {
   created: Date;
 
   @UpdateDateColumn()
-  updated: Date;
+  update: Date;
 
   @Column()
   description: string;

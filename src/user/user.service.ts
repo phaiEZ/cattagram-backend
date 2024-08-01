@@ -45,8 +45,6 @@ export class UserService {
         profilePic,
       });
 
-      console.log(user);
-
       return await this.userRepository.save(user);
     } catch (error) {
       throw new ConflictException({
@@ -74,8 +72,6 @@ export class UserService {
     try {
       const { oldPassword, newPassword } = changePasswordDto;
       const user = await this.getUserInfo(id);
-      console.log(user);
-
       const isOldPasswordValid = await bcrypt.compare(
         oldPassword,
         user.password,

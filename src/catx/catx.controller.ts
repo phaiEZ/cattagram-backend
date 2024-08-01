@@ -52,4 +52,9 @@ export class CatxController {
   ): Promise<Catx> {
     return this.catxService.updateCatx(id, user.id, updateCatxDto);
   }
+
+  @Get()
+  getAllCatxs(): Promise<Catx[]> {
+    return this.catxService.getAllCatxs();
+  }
 }

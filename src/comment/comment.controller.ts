@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Request, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Request,
+  UseGuards,
+  Delete,
+  Param,
+} from '@nestjs/common';
 import { CommentService } from './comment.service';
 
 import { Comment } from './comment.entity';
@@ -20,5 +28,15 @@ export class CommentController {
       user.id,
       createCommentDto.text,
     );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  async deleteCommentById(
+    @Param('id') commentId: string,
+    @Request() { user }: any,
+  ): Promise<{ message: string }> {
+    await this.commentService.deleteCommentById(commentId, user.id);
+    return { message: 'Comment deleted successfully' };
   }
 }

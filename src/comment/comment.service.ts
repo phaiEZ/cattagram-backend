@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CommentRepository } from './comment.repository';
 import { CatxRepository } from '../catx/catx.repository';
@@ -34,5 +38,23 @@ export class CommentService {
     await this.commentRepository.save(comment);
 
     return comment;
+  }
+
+  async deleteCommentById(commentId: string, userId: string): Promise<void> {
+    const comment = await this.commentRepository.findOne(commentId, {
+      relations: ['user'],
+    });
+
+    if (!comment) {
+      throw new NotFoundException('Comment not found');
+    }
+
+    if (comment.user.id !== userId) {
+      throw new UnauthorizedException(
+        'You are not authorized to delete this comment',
+      );
+    }
+
+    await this.commentRepository.remove(comment);
   }
 }

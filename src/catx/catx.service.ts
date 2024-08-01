@@ -78,4 +78,20 @@ export class CatxService {
     Object.assign(catx, updateCatxDto);
     return this.catxRepository.save(catx);
   }
+
+  async getAllCatxs(): Promise<Catx[]> {
+    return this.catxRepository
+      .createQueryBuilder('catx')
+      .leftJoinAndSelect('catx.user', 'user')
+      .select([
+        'catx.id',
+        'catx.description',
+        'catx.created',
+        'user.username',
+        'user.id',
+        'user.profilePic',
+      ])
+      .orderBy('catx.created', 'DESC')
+      .getMany();
+  }
 }
