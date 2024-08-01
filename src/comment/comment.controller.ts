@@ -42,7 +42,6 @@ export class CommentController {
     return { message: 'Comment deleted successfully' };
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get(':catxId')
   getCommentsByCatxId(@Param('catxId') catxId: string): Promise<CommentDto[]> {
     return this.commentService.getCommentsByCatxId(catxId);

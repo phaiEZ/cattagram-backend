@@ -78,5 +78,4 @@ export class CommentService {
       catxId: comment.catx.id,
     }));
   }
-  
 }
