@@ -26,7 +26,6 @@ export class ImageController {
     return this.imageService.uploadProfilePic(uploadImgDto, user);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get(':userId')
   getImagesByUserId(@Param('userId') userId: string): Promise<Image[]> {
     return this.imageService.getImagesByUserId(userId);

@@ -47,6 +47,7 @@ export class ImageService {
         .leftJoinAndSelect('image.user', 'user')
         .select([
           'image.id',
+          'image.img',
           'image.description',
           'image.created',
           'image.update',
