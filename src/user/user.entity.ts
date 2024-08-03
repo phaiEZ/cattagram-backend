@@ -34,6 +34,9 @@ export class User {
   ownerName: string;
 
   @Column()
+  birthPlace: string;
+
+  @Column()
   gender: string;
 
   @Column()

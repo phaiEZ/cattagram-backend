@@ -24,10 +24,13 @@ export class SignUpDto {
   @IsNotEmpty()
   breeds: string;
 
+  @IsNotEmpty()
+  birthPlace: string;
+
   @IsOptional()
   description?: string;
 
   @IsOptional()
-  @MaxFileSize({ message: 'Profile picture size must be 1MB or less' })
+  @MaxFileSize({ message: 'Profile picture size must be 2MB or less' })
   profilePic?: string;
 }

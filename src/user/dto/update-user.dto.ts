@@ -21,6 +21,11 @@ export class UpdateUserDto {
   @IsString()
   description?: string;
 
+  
+  @IsOptional()
+  @IsString()
+  birthPlace?: string;
+
   @IsOptional()
   @IsString()
   profilePic?: string;

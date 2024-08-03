@@ -30,6 +30,7 @@ export class UserService {
         breeds,
         description,
         profilePic,
+        birthPlace,
       } = signUpDto;
 
       const hashedPassword = await bcrypt.hashSync(password, 10);
@@ -43,6 +44,7 @@ export class UserService {
         breeds,
         description,
         profilePic,
+        birthPlace,
       });
 
       return await this.userRepository.save(user);
@@ -62,7 +64,7 @@ export class UserService {
   async getUserInfo(id: string): Promise<any> {
     const user = await this.userRepository.findOne({ where: { id } });
     const { password, ...result } = user;
-    return user;
+    return result;
   }
 
   async changePassword(
