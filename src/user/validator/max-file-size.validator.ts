@@ -10,7 +10,7 @@ export class MaxFileSizeConstraint implements ValidatorConstraintInterface {
   validate(profilePic: string, args: any) {
     if (!profilePic) return true; // If profilePic is not provided, it's valid since it's optional
 
-    const MAX_SIZE = 1024 * 1024 * 2; // 2MB size limit
+    const MAX_SIZE = 1024 * 1024 * 3; // 2MB size limit
 
     // Assuming the profilePic is a base64 string
     const buffer = Buffer.from(profilePic, 'base64');

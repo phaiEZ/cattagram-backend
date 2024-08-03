@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Patch,
   Post,
   Request,
@@ -50,5 +51,11 @@ export class UserController {
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<User> {
     return this.userService.updateUserInfo(user.id, updateUserDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  getUserById(@Param('id') id: string): Promise<User> {
+    return this.userService.getUserById(id);
   }
 }

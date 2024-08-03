@@ -63,8 +63,8 @@ export class UserService {
 
   async getUserInfo(id: string): Promise<any> {
     const user = await this.userRepository.findOne({ where: { id } });
-    const { password, ...result } = user;
-    return result;
+
+    return user;
   }
 
   async changePassword(
@@ -104,5 +104,11 @@ export class UserService {
 
     Object.assign(user, updateUserDto);
     return this.userRepository.save(user);
+  }
+
+  async getUserById(id: string): Promise<any> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    const { password, ...result } = user;
+    return result;
   }
 }
