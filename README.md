@@ -52,11 +52,11 @@ cd cattagram-backend
 3. create .env.stage.dev in the root directory of the backend project with the following content:
 
 ```bash
-    DATABASE_HOST=your_database_host
-    DATABASE_PORT=your_database_port
-    DATABASE_USERNAME=your_database_username
-    DATABASE_PASSWORD=your_database_password
-    DATABASE_NAME=your_database_name
+    DB_HOST=your_database_host
+    DB_PORT=your_database_port
+    DB_USERNAME=your_database_username
+    DB_PASSWORD=your_database_password
+    DB_DATABASE=your_database_name
     JWT_SECRET=your_jwt_secret
 ```
 
