@@ -1,73 +1,113 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Cattagram
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Cattagram is a social media platform for sharing cat photos and updates. This repository contains both the frontend and backend for the Cattagram application.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Stacks
 
-## Description
+- **Frontend**: Next.js
+- **Backend**: Nest.js
+- **Database**: PostgreSQL
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Repository
 
-## Installation
+- **Backend**: [cattagram-backend](https://github.com/phaiEZ/cattagram-backend)
+- **Frontend**: [cattagram-frontend-v2](https://github.com/phaiEZ/cattagram-frontend-v2)
 
-```bash
-$ npm install
-```
+## Table of Contents
 
-## Running the app
+- [Getting Started](#getting-started)
+- [Backend](#backend)
+- [Frontend](#frontend)
+- [Learn More](#learn-more)
 
-```bash
-# development
-$ npm run start
+## Getting Started
 
-# watch mode
-$ npm run start:dev
+To get started with Cattagram, follow these steps:
 
-# production mode
-$ npm run start:prod
-```
+### Prerequisites
 
-## Test
+Make sure you have the following installed on your machine:
+
+- Node.js
+- npm
+- PostgreSQL (for the backend database)
+
+## backend
+
+### Setting Up the Backend
+
+1. Clone the backend repository:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/phaiEZ/cattagram-backend
+cd cattagram-backend
 ```
 
-## Support
+2. Install the dependencies:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+   npm install
+```
 
-## Stay in touch
+3. create .env.stage.dev in the root directory of the backend project with the following content:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+    DATABASE_HOST=your_database_host
+    DATABASE_PORT=your_database_port
+    DATABASE_USERNAME=your_database_username
+    DATABASE_PASSWORD=your_database_password
+    DATABASE_NAME=your_database_name
+    JWT_SECRET=your_jwt_secret
+```
 
-## License
+4. Run the backend server:
 
-Nest is [MIT licensed](LICENSE).
+```bash
+    npm run start:dev
+```
+
+The backend server will start on http://localhost:8000.
+
+## Frontend
+
+### Setting Up the Frontend
+
+1. Clone the frontend repository:
+
+```bash
+    git clone https://github.com/phaiEZ/cattagram-frontend-v2
+    cd cattagram-frontend
+```
+
+2. Install the dependencies:
+
+```bash
+    npm install
+```
+
+3. Create a .env.local file in the root directory of the frontend project with the following content:
+
+```bash
+    NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
+```
+
+4. Run the frontend server:
+
+```bash
+    npm run dev
+```
+
+The frontend server will start on http://localhost:3000.
+
+## Learn More
+
+To learn more about the technologies used in this project, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [NestJS Documentation](https://docs.nestjs.com/) - learn about NestJS framework.
+- [Ant Design Documentation](https://ant.design/docs/react/introduce) - learn about Ant Design components.
+- [TypeORM Documentation](https://typeorm.io/#/) - learn about TypeORM for database management.
+
+## Contributing
+
+Contributions are welcome! If you have any improvements or suggestions, feel free to open a pull request or issue.
