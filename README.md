@@ -10,8 +10,8 @@ Cattagram is a social media platform for sharing cat photos and updates. This re
 
 ## Repository
 
-- **Backend**: [cattagram-backend](https://github.com/phaiEZ/cattagram-backend)
 - **Frontend**: [cattagram-frontend-v2](https://github.com/phaiEZ/cattagram-frontend-v2)
+- **Backend**: [cattagram-backend](https://github.com/phaiEZ/cattagram-backend)
 
 ## Table of Contents
 
